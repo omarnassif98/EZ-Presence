@@ -7,7 +7,7 @@ This is a sample README file.
 
 ## Functions
 
-1. Find Keyword Count In Song
+1. Function #1
 	* xyz
 	* abc
 2. Function #2
