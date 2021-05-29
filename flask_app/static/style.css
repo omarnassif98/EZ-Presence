@@ -1,0 +1,26 @@
+.nav__flex {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav__logo {
+  width: 48px;
+  height: 48px;
+}
+
+.nav__acct {
+  height: 32px;
+  width: 128px;
+  line-height: 32px;
+  text-align: center;
+  border: 2px solid hsl(230, 49%, 41%);
+  border-radius: 5px;
+  background-color: hsl(221, 68%, 93%);
+  font-family: sans;
+  text-decoration: none;
+  color: hsl(230, 49%, 41%);
+  font-size: 16px;
+}
