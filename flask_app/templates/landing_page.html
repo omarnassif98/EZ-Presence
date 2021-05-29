@@ -3,8 +3,40 @@
 <head>
   <meta charset="utf-8">
   <title>EZ Presence</title>
+  <link rel="stylesheet" href=
+  "{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <p>Hello, World!</p>
+  <nav>
+    <div class="nav__flex">
+      <a href="/"><img src=
+      "{{ url_for('static', filename='logo.png') }}" alt="logo"
+      class="nav__logo"></a> <a href="#" class=
+      "nav__acct">Account</a>
+    </div>
+  </nav>
+  <main>
+    <div class="hero">
+      <div class="hero__content">
+        <div class="hero__text">
+          <div class="hero__maintext">
+            Impedit incidunt consectetur aut alias et quo.
+            Voluptates velit enim incidunt saepe.
+          </div>
+          <div class="hero__offtext">
+            Et modi dolores possimus voluptatem. Non sit facere
+            voluptate omnis eum unde exercitationem. Autem dolores
+            omnis vel ex.
+          </div>
+          <div class="hero__buttons">
+            <a class="hero__signup" href="#">Sign Up</a> <a class=
+            "hero__login" href="#">Log In</a>
+          </div>
+        </div>
+        <div class="hero__photo"><img alt="classroom" src=
+        "{{ url_for('static', filename='classroom_blue.jpg') }}"></div>
+      </div>
+    </div>
+  </main>
 </body>
 </html>
