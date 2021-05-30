@@ -13,6 +13,12 @@ body {
 .nav__logo {
   width: 48px;
   height: 48px;
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
+}
+
+.nav__logo:active {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .nav__acct {
@@ -27,6 +33,11 @@ body {
   text-decoration: none;
   color: hsl(230, 49%, 41%);
   font-size: 16px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
+}
+
+.nav__acct:active {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .hero__content {
@@ -61,6 +72,11 @@ body {
   color: hsl(216, 33%, 97%);
   font-size: 18px;
   margin-right: 24px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
+}
+
+.hero__signup:active {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .hero__login {
@@ -76,6 +92,11 @@ body {
   text-decoration: none;
   color: hsl(230, 49%, 41%);
   font-size: 18px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
+}
+
+.hero__login:active {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .hero__maintext {
