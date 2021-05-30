@@ -1,3 +1,45 @@
+.button {
+  text-align: center;
+  border-radius: 5px;
+  font-family: sans;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.button_medium {
+  height: 32px;
+  width: 128px;
+  line-height: 32px;
+  font-size: 16px;
+}
+
+.button_large {
+  height: 48px;
+  width: 192px;
+  line-height: 48px;
+  font-size: 18px;
+}
+
+.button_normal {
+  border: 2px solid hsl(230, 49%, 41%);
+  background-color: hsl(221, 68%, 93%);
+  color: hsl(230, 49%, 41%);
+}
+
+.button_important {
+  background-color: hsl(230, 49%, 41%);
+  border: 2px solid hsl(230, 49%, 41%);
+  color: hsl(216, 33%, 97%);
+}
+
+.clickable {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
+}
+
+.clickable:active {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
 body {
   background-color: hsl(216, 33%, 97%);
 }
@@ -14,30 +56,6 @@ body {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
-}
-
-.nav__logo:active {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-}
-
-.nav__acct {
-  height: 32px;
-  width: 128px;
-  line-height: 32px;
-  text-align: center;
-  border: 2px solid hsl(230, 49%, 41%);
-  border-radius: 5px;
-  background-color: hsl(221, 68%, 93%);
-  font-family: sans;
-  text-decoration: none;
-  color: hsl(230, 49%, 41%);
-  font-size: 16px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
-}
-
-.nav__acct:active {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .hero__content {
@@ -58,47 +76,6 @@ body {
   justify-content: space-between;
 }
 
-.hero__signup {
-  height: 48px;
-  width: 192px;
-  display: inline-block;
-  line-height: 48px;
-  text-align: center;
-  background-color: hsl(230, 49%, 41%);
-  border: 2px solid hsl(230, 49%, 41%);
-  border-radius: 5px;
-  font-family: sans;
-  text-decoration: none;
-  color: hsl(216, 33%, 97%);
-  font-size: 18px;
-  margin-right: 24px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
-}
-
-.hero__signup:active {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-}
-
-.hero__login {
-  height: 48px;
-  width: 192px;
-  display: inline-block;
-  line-height: 48px;
-  text-align: center;
-  border: 2px solid hsl(230, 49%, 41%);
-  border-radius: 5px;
-  background-color: hsl(221, 68%, 93%);
-  font-family: sans;
-  text-decoration: none;
-  color: hsl(230, 49%, 41%);
-  font-size: 18px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
-}
-
-.hero__login:active {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-}
-
 .hero__maintext {
   font-weight: bold;
 }
@@ -112,4 +89,8 @@ body {
 
 .hero__photo img {
   margin-left: -64px;
+}
+
+.hero__buttons a:first-child {
+  margin-right: 24px;
 }
