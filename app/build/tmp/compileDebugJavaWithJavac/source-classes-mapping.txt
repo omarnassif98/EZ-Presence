@@ -1,8 +1,0 @@
-edu/wit/mobileapp/activityswitch/BuildConfig.java
- edu.wit.mobileapp.activityswitch.BuildConfig
-edu/wit/mobileapp/activityswitch/Activity1.java
- edu.wit.mobileapp.activityswitch.Activity1
- edu.wit.mobileapp.activityswitch.Activity1$1
-edu/wit/mobileapp/activityswitch/Activity2.java
- edu.wit.mobileapp.activityswitch.Activity2
- edu.wit.mobileapp.activityswitch.Activity2$1
