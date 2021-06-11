@@ -4,7 +4,7 @@
     "type": "COMPATIBLE_SCREEN_MANIFEST",
     "kind": "Directory"
   },
-  "applicationId": "edu.wit.mobileapp.ezpresence",
+  "applicationId": "edu.wit.mobileapp.activityswitch",
   "variantName": "debug",
   "elements": []
 }
