@@ -1,6 +1,6 @@
 # ezpresence
 
-A new Flutter application.
+A new Flutter application. The main dart program is located in the lib folder --> main.dart . The entire ezpresence_mobile folder is needed (I think) to run it in Android Studio
 
 ## Getting Started
 
