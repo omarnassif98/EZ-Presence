@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+  <script src={{url_for('static', filename='FirebaseInitializer.js')}}></script>
+  <script src={{url_for('static', filename='navbar.js')}}></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='navbar.css') }}">
+  {% block header %}
+  {% endblock header %}
+</head>
+<body>
+  <div id="navbar">
+    <div id='login_dropdown' class="navbar_content dropdown_field" style="float: right;">
+      <span>Login</span>
+      <div class="dropdown_content" style="right: 0;">
+        <label for="Email">Enter Email:</label>
+        <input id="Email" type="email">
+        <br>
+        <label for="Pass">Enter Password:</label>
+        <input id="Pass" type="password">
+        <br>
+        <button onclick="LogUserIn(this.parentNode)">Log in</button>
+        <br>
+        <span>If you do not have an account, <br>email an <a href="mailto:someone">administrator</a></span>
+      </div>
+    </div>
+    <div id="profile_dropdown" class="navbar_content dropdown_field" style="float: right; display: none;">
+      <span id="profile_name">Profile</span>
+      <div class="dropdown_content" style="right: 0;">
+        <span class="selectable_option" onclick="LogUserOut()">Logout</span>
+      </div>
+    </div>
+  </div>
+  {% block body %}
+  {% endblock body %}
+</body>
+</html>
