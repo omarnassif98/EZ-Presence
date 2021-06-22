@@ -1,0 +1,33 @@
+body{
+    background-color: darkgray;
+}
+
+#class_collection{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 75%;
+    margin: auto;
+}
+
+.class_wrapper{
+    width: 12em;
+    text-align: center;
+    background-color: whitesmoke;
+    border-radius: 3em;
+    border: solid;
+    transition: .25s all;
+}
+
+.class_wrapper:hover{
+    background-color: rebeccapurple;
+}
+
+.content_area{
+    background-color: rgba(255, 255, 255, 0.6);
+    width: 75%;
+    margin: auto;
+    margin-top: 2.5em;
+    height: 50%;
+    transition: height 1s ease;
+}

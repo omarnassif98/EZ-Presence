@@ -1,14 +1,6 @@
 #!/usr/bin/env python3
 
-from flask import Flask, render_template
-
-app = Flask(__name__)
-
-
-@app.route("/")
-def landing_page():
-    return render_template("landing_page.html")
-
+from webapp import app
 
 if __name__ == '__main__':
-    app.run(app, port=8080)
+    app.run(port=8080, debug=True)
