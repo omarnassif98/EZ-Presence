@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'styles.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,6 +22,15 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         primarySwatch: AppColor.indigo,
+        canvasColor: AppColor.white,
+        primaryTextTheme: Theme.of(context).textTheme.apply(
+              bodyColor: AppColor.black,
+              displayColor: AppColor.black,
+            ),
+        textTheme: Theme.of(context).textTheme.apply(
+              bodyColor: AppColor.black,
+              displayColor: AppColor.black,
+            ),
       ),
       home: MyHomePage(title: 'EZPresence'),
     );
@@ -60,7 +70,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
-  Widget build(BuildContext context) { //This is the first page of the mobile app
+  Widget build(BuildContext context) {
+    //This is the first page of the mobile app
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -118,7 +129,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
               ),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => SecondRoute()),);},
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SecondRoute()),
+                );
+              },
               child: Text('Login'),
             ),
             Text(
@@ -140,7 +155,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class SecondRoute extends StatelessWidget { //The 2nd page of the mobile app
+class SecondRoute extends StatelessWidget {
+  //The 2nd page of the mobile app
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -167,7 +183,11 @@ class SecondRoute extends StatelessWidget { //The 2nd page of the mobile app
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
               ),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => SecondRoute()),);},
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SecondRoute()),
+                );
+              },
               child: Text('Scan Code'),
             ),
           ],

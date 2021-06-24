@@ -13,4 +13,8 @@ abstract class AppColor {
     800: Color(0xffbed0f7),
     900: Color(0xffe0e8f9)
   });
+
+  static const Color white = Color(0xfff5f7fa);
+
+  static const Color black = Color(0xff1f2933);
 }
