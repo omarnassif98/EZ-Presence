@@ -31,3 +31,7 @@ body{
     height: 50%;
     transition: height 1s ease;
 }
+
+#session_code{
+    text-align: center;
+}

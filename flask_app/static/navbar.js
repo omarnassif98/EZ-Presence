@@ -1,7 +1,6 @@
 var currentFocus = null;
 
-window.onload = function(){
-    console.log('what');
+window.addEventListener('load', () => {
     let nav = document.getElementById('navbar');
     console.log(nav);
     console.log([...nav.children]);
@@ -14,7 +13,7 @@ window.onload = function(){
             });
         };
     });
-}
+});
 
 function ChangeFocus(newFocus){
         if(currentFocus){

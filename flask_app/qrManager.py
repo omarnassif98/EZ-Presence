@@ -19,16 +19,15 @@ firestore_client = firestore.client()
 
 def MakeQRCode(tID, className, long, lat):
     class_roster = db.reference('classes/' + tID + '/' + className + '/roster').get()
-    sessionID = db.reference('classes/' + tID + '/' + className + '/sessions').push('in session').key
     rosterStatus = {}
     for key, val in class_roster.items():
         rosterStatus[key] = {'present':False, 'name':val}
-    print(rosterStatus)
-    firestore_client.collection(u'classes').document(tID).set({'session_ID':sessionID, 'status':rosterStatus})
+    sessionID = db.reference('classes/' + tID + '/' + className + '/sessions').push({'in_session':True,'status':rosterStatus}).key
     blob = storage_bucket.blob(tID + '/' + sessionID + '.png')
     img = BytesIO()
     qrcode.make("{0}|{1}|{2}".format(className, long, lat)).save(img, format='png')
-
     blob.upload_from_string(img.getvalue(), 'image/png')
+
+    firestore_client.collection(u'classes').document(tID).set({'current_session':sessionID, 'time_created':firestore.firestore.SERVER_TIMESTAMP})
     print('GENERATED')
 
