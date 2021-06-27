@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+// import 'package:flutter/widgets.dart';
 import 'styles.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 void main() {
   runApp(MyApp());
@@ -163,7 +165,7 @@ class SecondRoute extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => SecondRoute()),
+                  MaterialPageRoute(builder: (context) => QRRoute()),
                 );
               },
               child: Text('Scan Code'),
@@ -177,5 +179,52 @@ class SecondRoute extends StatelessWidget {
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+}
+
+class QRRoute extends StatefulWidget {
+  @override
+  _QRRouteState createState() => _QRRouteState();
+}
+
+class _QRRouteState extends State<QRRoute> {
+  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
+  // TODO: make these null safe
+  Barcode? result;
+  QRViewController? controller;
+
+  //The QR page of the mobile app
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            flex: 5,
+            child: QRView(
+              key: qrKey,
+              onQRViewCreated: _onQRViewCreated,
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Center(
+              child: (result != null)
+                  ? Text('Data: ${result?.code}')
+                  : Text('Scan a code'),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  void _onQRViewCreated(QRViewController controller) {
+    this.controller = controller;
+    controller.scannedDataStream.listen((scanData) {
+      setState(() {
+        result = scanData;
+      });
+    });
   }
 }
