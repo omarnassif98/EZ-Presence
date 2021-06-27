@@ -173,11 +173,6 @@ class SecondRoute extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
@@ -213,6 +208,18 @@ class _QRRouteState extends State<QRRoute> {
                   ? Text('Data: ${result?.code}')
                   : Text('Scan a code'),
             ),
+          ),
+          TextButton(
+            style: ButtonStyle(
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SecondRoute()),
+              );
+            },
+            child: Text('Go Back'),
           )
         ],
       ),
