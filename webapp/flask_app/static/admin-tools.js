@@ -79,9 +79,9 @@ function populateCarousels(){
 }
 
 firebase.auth().onAuthStateChanged((user) => {
+    let login_notice = document.getElementById('login_notice');
+    let tool_display = document.getElementById('admin_tools');
     if (user) {
-        let login_notice = document.getElementById('login_notice');
-        let tool_display = document.getElementById('admin_tools');
         user.getIdTokenResult().then(records =>
             {
                 console.log(records.claims.role);
