@@ -1,0 +1,55 @@
+
+.content_area{
+    width: 75%;
+    margin: auto;
+    margin-top: 2.5em;
+    background-color: gainsboro;
+    padding: .5em;
+}
+
+#login_notice{
+    text-align: center;
+    background-color: antiquewhite;
+    height: 5em;
+    padding-top: 2.5em;
+}
+#admin_tools{
+    display: flow-root;
+}
+
+.admin_tool{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;
+    background-color: darkgray;
+    padding: .5em;
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+
+.admin_tool > button{
+    margin-top: 2em;
+    width: 25%;
+    margin-left: 75%;
+    height: 3em;
+
+}
+
+.selection_carousel{
+    padding: .75em;
+    display: flex;
+    background-color: lightgray;
+}
+
+.selection_button{
+    border-radius: 1em;
+    padding: .5em;
+    background-color: honeydew;
+}
+
+.selection_button > span{
+    pointer-events: none;
+}
+

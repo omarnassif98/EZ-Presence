@@ -16,3 +16,4 @@ if (!firebase.apps.length){
   const db = firebase.database();
   const firestore = firebase.firestore();
   const storage = firebase.storage()
+  const functions = firebase.functions();

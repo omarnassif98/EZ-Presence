@@ -21,8 +21,9 @@ function GenerateSession(sessionTitle){
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         var classID=null;
-        db.ref('user_roles/' + user.uid).get().then(function(role){
-            if (role.val() == 'professor'){
+        user.getIdTokenResult().then(records => {
+                console.log(records.claims.role);
+                if(records.claims.role == 'professor'){
                 db.ref('classes/' + user.uid).get().then(function(classes){
                     let class_area = document.getElementById('class_collection');
                     classes.forEach(function(class_listing){
@@ -35,7 +36,9 @@ firebase.auth().onAuthStateChanged((user) => {
                             class_area.appendChild(wrapperButton);
                             wrapperButton.addEventListener('click', function(){
                                 GenerateSession(classID);
-                                document.getElementById('session_view').children[0].innerHTML = classID;
+                                let date = (new Date()).toDateString().split(' ')
+                                document.getElementById('session_title').innerHTML = classID + ' with ' + user.displayName;
+                                document.getElementById('session_subtitle').innerHTML = `Session of ${date[0]}, ${date[2]} ${date[1]}`;
                                 document.getElementById('session_view').style.display = 'block';
                                 document.getElementById('session_creation').style.display = 'none';
                             });
@@ -92,6 +95,7 @@ firebase.auth().onAuthStateChanged((user) => {
                     });
                 });
             }else{
+                console.log('yoo');
                 document.getElementById('login_notice').children[0].innerHTML = 'Only professors have permission to began class sessions';
             }
         });

@@ -5,8 +5,11 @@ from threading import Thread
 app = Flask(__name__)
 @app.route("/")
 def landing_page():
-    return render_template('dashboard.html')
+    return render_template('admin-tools.html')
 
+@app.route('/dash')
+def DASH():
+    return render_template('dashboard.html')
 @app.route('/landing')
 def TRASH():
     return render_template("landing_page.html")

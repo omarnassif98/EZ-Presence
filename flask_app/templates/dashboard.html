@@ -3,7 +3,7 @@
   {% block header %}
   <title>Dashboard demo</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
-  <script src={{url_for('static', filename='QR_Generation.js')}}></script>
+  <script src={{url_for('static', filename='dashboard.js')}}></script>
   {% endblock %}
   {% block body %}
   <div class="content_area">
@@ -15,7 +15,8 @@
       <div id="class_collection"></div>
     </div>
     <div id="session_view" style="display: none;">
-      <h1 id="session_class">session_ID</h1>
+      <h1 id="session_title" style="text-align: center;">class_ID</h1>
+      <h3 id="session_subtitle" style="text-align: center;">session_ID</h2>
       <div id="session_code"><h3>Please wait</h3></div>
     </div>
 {% endblock %}
