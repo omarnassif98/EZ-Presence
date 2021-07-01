@@ -4,6 +4,8 @@ import 'styles.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() {
   runApp(App());
@@ -83,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String password = '';
 
   void login() async {
-    UserCredential userCredential = await FirebaseAuth.instance
+    await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password);
     Navigator.push(
       context,
@@ -263,6 +265,22 @@ class _QRRouteState extends State<QRRoute> {
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) {
+      List<String> splitData = scanData.code.split('|');
+      String teacherId = splitData[0];
+      String classId = splitData[1];
+      FirebaseFirestore.instance
+          .collection('classes')
+          .doc(teacherId)
+          .get()
+          .then((DocumentSnapshot<Map<String, dynamic>> snap) {
+        String? currentSession = snap.data()?['current_session'];
+        FirebaseDatabase.instance
+            .reference()
+            .child(
+                'classes/$teacherId/$classId/sessions/$currentSession/status/${FirebaseAuth.instance.currentUser?.uid}/present')
+            .set(true);
+      });
+
       setState(() {
         result = scanData;
       });
