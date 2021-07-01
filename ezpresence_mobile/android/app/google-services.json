@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "375220042404",
+    "firebase_url": "https://attend-bdba5-default-rtdb.firebaseio.com",
+    "project_id": "attend-bdba5",
+    "storage_bucket": "attend-bdba5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:375220042404:android:92fce2338d0cff2a3a4431",
+        "android_client_info": {
+          "package_name": "com.omarnassif.ezpresence"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "375220042404-l30k0pbaqss8656h2kqfknlt2tn8hjjk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpQG-Yf7R33QpmgRQwkwnneOV9Aqf_64o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "375220042404-l30k0pbaqss8656h2kqfknlt2tn8hjjk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
