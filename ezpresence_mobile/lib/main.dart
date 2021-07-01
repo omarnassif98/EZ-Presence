@@ -2,9 +2,30 @@ import 'package:flutter/material.dart';
 // import 'package:flutter/widgets.dart';
 import 'styles.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(App());
+}
+
+class App extends StatefulWidget {
+  @override
+  _AppState createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+        future: _initialization,
+        builder: (context, snapshot) {
+          // TODO: handle errors
+          return MyApp();
+        });
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -58,6 +79,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  String email = '';
+  String password = '';
+
+  void login() async {
+    UserCredential userCredential = await FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: email, password: password);
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => SecondRoute()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     //This is the first page of the mobile app
@@ -105,6 +138,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 border: OutlineInputBorder(),
                 labelText: 'Username',
               ),
+              onChanged: (String value) {
+                email = value;
+              },
             ),
             TextField(
               obscureText: true,
@@ -112,17 +148,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 border: OutlineInputBorder(),
                 labelText: 'Password',
               ),
+              onChanged: (String value) {
+                password = value;
+              },
             ),
             TextButton(
               style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
               ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SecondRoute()),
-                );
-              },
+              onPressed: login,
               child: Text('Login'),
             ),
             Text(
