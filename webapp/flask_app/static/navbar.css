@@ -2,7 +2,7 @@ body{
     padding-top: 1em;
     background-color: cadetblue;
 }
-span{
+#navbar, span{
     cursor: default;
 }
 #navbar{
@@ -34,7 +34,7 @@ span{
     position: absolute;
     border: 0.2em solid black;
     padding: .5em;
-    background:bisque;
+    background:rgb(197, 140, 249);
 }
 
 .navbar_content > span{

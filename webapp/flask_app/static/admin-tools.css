@@ -40,12 +40,15 @@
 .selection_carousel{
     padding: .75em;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     background-color: lightgray;
 }
 
 .selection_button{
     border-radius: 1em;
     padding: .5em;
+    margin: .1em;
     background-color: honeydew;
 }
 

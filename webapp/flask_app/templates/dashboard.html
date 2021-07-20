@@ -10,13 +10,40 @@
     <div id="login_notice">
       <h1>You're going to have to log in first</h1>
     </div>
-    <div id="session_creation" style="display: none;">
-      <h1>Create session</h1>
-      <div id="class_collection"></div>
+    <div id="professor_view" style="display: none;">
+      <div id="class_selection">
+        <h1>Select Class</h1>
+        <div id="class_collection"></div>
+      </div>
+
+      <div id="class_details" style="display: none;">
+        <h1 id="class_title_details">ClassID</h1>
+        <button id="session_start_button">Start New Session</button>
+        <hr>
+        <div id="analytics_container">
+          <div class="analytics_group" id="past_sessions_view">
+            <h3>Previous Sessions</h3>
+            <select id="past_sessions_select">
+              <option value="" disabled selected hidden>Choose a past session</option>
+            </select>
+            <div id="past_session_attendance_data">
+
+            </div>
+        </div>
+
+        <div class="analytics_data" id="student_attendance_health">
+          <h3>Student Attendance Health Risk</h3>
+          <div id="student_health"></div>
+        </div>
+      </div>
     </div>
     <div id="session_view" style="display: none;">
-      <h1 id="session_title" style="text-align: center;">class_ID</h1>
+      <button id="terminate_session_button" disabled>Finished Taking Attendance</button>
+      <h1 id="session_title" style="text-align: center; clear: right;">class_ID</h1>
       <h3 id="session_subtitle" style="text-align: center;">session_ID</h2>
       <div id="session_code"><h3>Please wait</h3></div>
+      <hr id="roster_divider" style="display: none;">
+      <div id="roster_container">
+      </div>
     </div>
 {% endblock %}

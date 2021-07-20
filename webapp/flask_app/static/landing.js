@@ -1,8 +1,10 @@
-var currentPrompt = document.getElementById('login_notice');
+var currentPrompt;
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         user.getIdTokenResult().then(records =>
             {
+                currentPrompt = document.getElementById('login_prompt');
+                console.log(currentPrompt);
                 switch (records.claims.role) {
                     case 'professor':
                         document.getElementById('professor_prompt').querySelector('span').innerHTML = user.displayName;
@@ -16,7 +18,7 @@ firebase.auth().onAuthStateChanged((user) => {
             });
     }else{
         switchPrompt(document.getElementById('login_prompt'));
-        }
+    }
 });
 
 function switchPrompt(newPrompt){
