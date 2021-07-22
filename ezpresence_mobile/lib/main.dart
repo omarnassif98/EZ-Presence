@@ -31,21 +31,12 @@ class _AppState extends State<App> {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  // This widget is the root of application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: AppColor.indigo,
         canvasColor: AppColor.white,
         primaryTextTheme: Theme.of(context).textTheme.apply(
@@ -103,6 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
+      resizeToAvoidBottomInset: false, //this fixes a simulator error saying the keyboard overflows the pixels, shouldn't have any other negative side effects
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
@@ -126,14 +118,24 @@ class _MyHomePageState extends State<MyHomePage> {
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Text(
               'EZPresence',
+              textAlign: TextAlign.center,
+              textScaleFactor: 4.0,
+              style: TextStyle(
+                height: 2.5
+              )
             ),
             Text(
               'Student Application',
+              textScaleFactor: 1.6,
+              style: TextStyle(
+                height: 1.2 //This increases the amount of space between "EZPresence" and "Student Application"
+              )
             ),
+            SizedBox(height: 70), //This adds a space between the "Student Application" text and the "Username" textfield
             TextField(
               obscureText: false,
               decoration: InputDecoration(
@@ -143,6 +145,9 @@ class _MyHomePageState extends State<MyHomePage> {
               onChanged: (String value) {
                 email = value;
               },
+              // style: TextStyle(
+              //   height: 2.0,
+              // )
             ),
             TextField(
               obscureText: true,
@@ -156,13 +161,18 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             TextButton(
               style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.indigo),
               ),
               onPressed: login,
               child: Text('Login'),
             ),
             Text(
               'Contact an administrator if you do not know your credentials',
+              //textScaleFactor: 1.3,
+              style: TextStyle(
+                height: 6.0
+              )
             ),
           ],
         ),
@@ -192,7 +202,7 @@ class SecondRoute extends StatelessWidget {
               'Student Application',
             ),
             Text(
-              'Welcome Michael! (hard coded)',
+              'Welcome!',
             ),
             TextButton(
               style: ButtonStyle(
