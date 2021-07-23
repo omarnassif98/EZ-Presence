@@ -79,6 +79,7 @@
     border-radius: 20px;
     display: flex;
     flex-direction: column;
+    padding-bottom: 0;
 }
 
 #past_sessions_select{
@@ -87,17 +88,19 @@
 
 #analytics_container{
     display: flex;
-    justify-content: center;
-
+    justify-content: space-around;
+    padding-bottom: 30px;
+    padding-top: 20px;
 }
 
-#past_session_attendance_data{
+.record_container{
     display: flex;
     flex-direction: column;
     gap: 10px;
     flex-wrap: nowrap;
     overflow-y: auto;
     margin-top: 10px;
+    background-color: #7fffd429;
 }
 
 .previous_record{

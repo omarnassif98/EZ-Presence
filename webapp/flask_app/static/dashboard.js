@@ -24,7 +24,7 @@ function ListenForSession(user, classID){
 
         console.log(snap.data()['time_created'].toDate() > loadTimestamp);
         if(snap.data()['time_created'].toDate() > loadTimestamp){
-            storage.ref(user.uid + '/' + snap.data()['current_session'] + '.png').getDownloadURL().then(function(url){
+                 storage.ref(user.uid + '/' + snap.data()['current_session'] + '.png').getDownloadURL().then(function(url){
                 let codeWrapper = document.getElementById('session_code');
                 codeWrapper.children[0].style.display = 'none';
                 let qrImage = document.createElement('img');
@@ -100,8 +100,6 @@ function ShowClassDetails(user, class_title, class_details){
         document.getElementById('session_subtitle').innerHTML = sessionID;
         document.getElementById('session_view').style.display = 'block';
         document.getElementById('class_details').style.display = 'none';
-
-
     });
     
     
@@ -118,23 +116,32 @@ function ShowClassDetails(user, class_title, class_details){
         new_option.innerHTML = session.child('title').val();
         selection_pane.insertBefore(new_option, selection_pane.firstChild);
         session.child('status').forEach(function(record){
-            if(record.child('present') == false){
+            console.log(record.val());
+            if(record.child('present').val() == false){
                 prevStudentRecords[record.key].abscences += 1;
             }
         })
     })
     
+    let descending_order = Object.keys(prevStudentRecords).sort((a, b) => prevStudentRecords[b].abscences - prevStudentRecords[a].abscences);
+
+
     let studentHealthWrapper = document.getElementById('student_health');
-    for(let student of Object.values(prevStudentRecords)){
+    for(let studentUID of descending_order){
+        let student = prevStudentRecords[studentUID];
         let attendance_holder = document.createElement('div');
         attendance_holder.classList.add('previous_record')
         let attendance_record = document.createElement('span');
         let attendance_verdict = document.createElement('span');
-        attendance_verdict.innerHTML = student.abscences;
-        attendance_verdict.style.color = (student.abscences > 0)?'green':'red';
+        attendance_verdict.innerHTML = student.abscences + ((student.abscences==1)?' absence':' absences');
+        attendance_verdict.style.color = (student.abscences == 0)?'green':'red';
         attendance_record.innerHTML = student.name + " : " + attendance_verdict.outerHTML;
         attendance_holder.appendChild(attendance_record);
         studentHealthWrapper.appendChild(attendance_holder);
+        attendance_holder.addEventListener('click', function(){
+            let send = confirm(`Send a warning email to ${student.name}? They have ${student.abscences} ${(student.abscences==1)?' absence':' absences'}.`);
+            console.log(send);
+        })
     }
     
     
@@ -154,6 +161,10 @@ function ShowClassDetails(user, class_title, class_details){
             attendance_verdict.style.color = (record.val()['present'])?'green':'red';
             attendance_record.innerHTML = record.val()['name'] + " : " + attendance_verdict.outerHTML;
             attendance_holder.appendChild(attendance_record);
+            attendance_holder.addEventListener('click', function(){
+                let send = confirm(`Send a warning email to ${prevStudentRecords[record.key].name}? They have ${prevStudentRecords[record.key].abscences} ${(prevStudentRecords[record.key].abscences==1)?' absence':' absences'}.`);
+                console.log(send);
+            })
             pastView.appendChild(attendance_holder);
         })
     });
