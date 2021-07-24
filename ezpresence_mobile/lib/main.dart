@@ -193,13 +193,22 @@ class SecondRoute extends StatelessWidget {
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Text(
-              'EZPresence',
+                'EZPresence',
+                textAlign: TextAlign.center,
+                textScaleFactor: 4.0,
+                style: TextStyle(
+                    height: 2.5
+                )
             ),
             Text(
-              'Student Application',
+                'Student Application',
+                textScaleFactor: 1.6,
+                style: TextStyle(
+                    height: 1.2 //This increases the amount of space between "EZPresence" and "Student Application"
+                )
             ),
             Text(
               'Welcome!',
