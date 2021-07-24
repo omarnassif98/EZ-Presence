@@ -210,9 +210,17 @@ class SecondRoute extends StatelessWidget {
                     height: 1.2 //This increases the amount of space between "EZPresence" and "Student Application"
                 )
             ),
+            SizedBox(height: 70),
+            Text(
+              'Login Successful',
+              textScaleFactor: 2.6,
+              style: TextStyle(color: Colors.green),
+            ),
             Text(
               'Welcome!',
+              textScaleFactor: 1.6,
             ),
+            SizedBox(height: 70),
             TextButton(
               style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
