@@ -4,8 +4,8 @@ import 'styles.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 
 void main() {
   runApp(App());
@@ -95,7 +95,8 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      resizeToAvoidBottomInset: false, //this fixes a simulator error saying the keyboard overflows the pixels, shouldn't have any other negative side effects
+      resizeToAvoidBottomInset:
+          false, //this fixes a simulator error saying the keyboard overflows the pixels, shouldn't have any other negative side effects
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
@@ -121,22 +122,19 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Text(
-              'EZPresence',
-              textAlign: TextAlign.center,
-              textScaleFactor: 4.0,
-              style: TextStyle(
-                height: 2.5
-              )
-            ),
-            Text(
-              'Student Application',
-              textScaleFactor: 1.6,
-              style: TextStyle(
-                height: 1.2 //This increases the amount of space between "EZPresence" and "Student Application"
-              )
-            ),
-            SizedBox(height: 70), //This adds a space between the "Student Application" text and the "Username" textfield
+            Text('EZPresence',
+                textAlign: TextAlign.center,
+                textScaleFactor: 4.0,
+                style: TextStyle(height: 2.5)),
+            Text('Student Application',
+                textScaleFactor: 1.6,
+                style: TextStyle(
+                    height:
+                        1.2 //This increases the amount of space between "EZPresence" and "Student Application"
+                    )),
+            SizedBox(
+                height:
+                    70), //This adds a space between the "Student Application" text and the "Username" textfield
             TextField(
               obscureText: false,
               decoration: InputDecoration(
@@ -163,18 +161,15 @@ class _MyHomePageState extends State<MyHomePage> {
             TextButton(
               style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.indigo),
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(Colors.indigo),
               ),
               onPressed: login,
               child: Text('Login'),
             ),
-            Text(
-              'Contact an administrator if you do not know your credentials',
-              //textScaleFactor: 1.3,
-              style: TextStyle(
-                height: 6.0
-              )
-            ),
+            Text('Contact an administrator if you do not know your credentials',
+                //textScaleFactor: 1.3,
+                style: TextStyle(height: 6.0)),
           ],
         ),
       ),
@@ -298,25 +293,36 @@ class _QRRouteState extends State<QRRoute> {
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) {
-      List<String> splitData = scanData.code.split('|');
-      String teacherId = splitData[0];
-      String classId = splitData[1];
-      FirebaseFirestore.instance
-          .collection('classes')
-          .doc(teacherId)
-          .get()
-          .then((DocumentSnapshot<Map<String, dynamic>> snap) {
-        String? currentSession = snap.data()?['current_session'];
-        FirebaseDatabase.instance
-            .reference()
-            .child(
-                'classes/$teacherId/$classId/sessions/$currentSession/status/${FirebaseAuth.instance.currentUser?.uid}/present')
-            .set(true);
-      });
-
-      setState(() {
-        result = scanData;
+      _getPosition().then((location) {
+        String longitude = location.longitude.toString();
+        String latitude = location.latitude.toString();
+        print("$longitude~$latitude");
+        return FirebaseFunctions.instance
+            .httpsCallable("validateLocation")("$longitude~$latitude");
+      }).then((result) {
+        print(result.toString());
       });
     });
+  }
+
+  Future<Position> _getPosition() async {
+    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return Future.error("Location services are disabled.");
+    }
+
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error("Location permissions are denied.");
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error("Location permissions are permanantly denied.");
+    }
+
+    return await Geolocator.getCurrentPosition();
   }
 }
