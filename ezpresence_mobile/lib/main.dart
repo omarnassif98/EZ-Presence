@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: AppColor.indigo,
         canvasColor: AppColor.white,
         primaryTextTheme: Theme.of(context).textTheme.apply(
-              bodyColor: AppColor.black,
+              bodyColor: AppColor.white, //I changed this from black to white so EZ-Presence in the title would be white
               displayColor: AppColor.black,
             ),
         textTheme: Theme.of(context).textTheme.apply(
@@ -49,6 +49,7 @@ class MyApp extends StatelessWidget {
             ),
       ),
       home: MyHomePage(title: 'EZPresence'),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -187,35 +188,57 @@ class SecondRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Second Page"),
+        title: Text("Login Successful", style: TextStyle(color: Colors.green),),
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Text(
-              'EZPresence',
+                'EZPresence',
+                textAlign: TextAlign.center,
+                textScaleFactor: 4.0,
+                style: TextStyle(
+                    height: 2.5
+                )
             ),
             Text(
-              'Student Application',
+                'Student Application',
+                textScaleFactor: 1.6,
+                style: TextStyle(
+                    height: 1.2 //This increases the amount of space between "EZPresence" and "Student Application"
+                )
             ),
+            Text(
+              'Login Successful',
+              textScaleFactor: 1.6,
+              style: TextStyle(color: Colors.green),
+            ),
+            SizedBox(height: 70),
             Text(
               'Welcome!',
+              textScaleFactor: 2.6,
             ),
-            TextButton(
-              style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+            SizedBox(height: 70), //This box makes a little space between the "Welcome!" and the "Scan Code"
+            SizedBox( //This box holds/is the button to "Scan Code"
+              height: 100,
+              width: 250,
+              child: TextButton(
+                style: ButtonStyle(
+                  foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                  backgroundColor: MaterialStateProperty.all<Color>(Colors.indigo),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => QRRoute()),
+                  );
+                },
+                child: Text('Scan Code', textScaleFactor: 3.0),
               ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => QRRoute()),
-                );
-              },
-              child: Text('Scan Code'),
-            ),
+            )
           ],
         ),
       ),
