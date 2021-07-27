@@ -26,6 +26,7 @@ Teachers:
 	* View attendance rates of roster
 Students: 
 5. Self-service attendance data
+	* Submit attendance status
 
 
 ## Getting Started
