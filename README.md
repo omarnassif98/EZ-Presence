@@ -7,6 +7,7 @@ EZ Presence is a presence management platform that streamlines and speeds up the
 
 ## Functions
 List all the functions with their sub functions of your application.
+
 Admins:
 1. Manage users
 	* Create Users
