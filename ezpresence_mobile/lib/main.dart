@@ -6,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:cloud_functions/cloud_functions.dart';
+import 'attendance.dart';
 
 void main() {
   runApp(App());
@@ -294,11 +295,16 @@ class _QRRouteState extends State<QRRoute> {
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) {
       _getPosition().then((location) {
-        String longitude = location.longitude.toString();
-        String latitude = location.latitude.toString();
-        print("$longitude~$latitude");
+        List<String> splitData = scanData.code.split('|');
+        String teacher_id = splitData[0];
+        String class_id = splitData[1];
+        String session_id = splitData[2];
+        double latitude = location.latitude;
+        double longitude = location.longitude;
+        Attendance att = new Attendance(
+            session_id, teacher_id, class_id, latitude, longitude);
         return FirebaseFunctions.instance
-            .httpsCallable("validateLocation")("$longitude~$latitude");
+            .httpsCallable("validateLocation")(att.toJson());
       }).then((result) {
         print(result.toString());
       });
