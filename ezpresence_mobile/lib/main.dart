@@ -271,12 +271,13 @@ class _QRRouteState extends State<QRRoute> {
             child: Center(
               child: (result != null)
                   ? Text('Data: ${result?.code}')
-                  : Text('Scan a code'),
+                  : Text('Scan a code', textScaleFactor: 3.1),
             ),
           ),
           TextButton(
             style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.indigo),
             ),
             onPressed: () {
               Navigator.push(
