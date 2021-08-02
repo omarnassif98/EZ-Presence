@@ -4,13 +4,20 @@ part 'attendance.g.dart';
 
 @JsonSerializable()
 class Attendance {
-  Attendance(this.session_id, this.teacher_id, this.class_id, this.latitude,
+  Attendance(this.sessionId, this.teacherId, this.classId, this.latitude,
       this.longitude);
 
-  String session_id;
-  String teacher_id;
-  String class_id;
+  @JsonKey(name: 'session_id')
+  String sessionId;
+
+  @JsonKey(name: 'teacher_id')
+  String teacherId;
+
+  @JsonKey(name: 'class_id')
+  String classId;
+
   double latitude;
+
   double longitude;
 
   factory Attendance.fromJson(Map<String, dynamic> json) =>

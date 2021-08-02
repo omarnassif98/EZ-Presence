@@ -41,7 +41,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: AppColor.indigo,
         canvasColor: AppColor.white,
         primaryTextTheme: Theme.of(context).textTheme.apply(
-              bodyColor: AppColor.white, //I changed this from black to white so EZ Presence in the title would be white
+              bodyColor: AppColor
+                  .white, //I changed this from black to white so EZ Presence in the title would be white
               displayColor: AppColor.black,
             ),
         textTheme: Theme.of(context).textTheme.apply(
@@ -184,7 +185,10 @@ class SecondRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Login Successful", style: TextStyle(color: Colors.green),),
+        title: Text(
+          "Login Successful",
+          style: TextStyle(color: Colors.green),
+        ),
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -192,21 +196,16 @@ class SecondRoute extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Text(
-                'EZ Presence',
+            Text('EZ Presence',
                 textAlign: TextAlign.center,
                 textScaleFactor: 4.0,
-                style: TextStyle(
-                    height: 2.5
-                )
-            ),
-            Text(
-                'Student Application',
+                style: TextStyle(height: 2.5)),
+            Text('Student Application',
                 textScaleFactor: 1.6,
                 style: TextStyle(
-                    height: 1.2 //This increases the amount of space between "EZ Presence" and "Student Application"
-                )
-            ),
+                    height:
+                        1.2 //This increases the amount of space between "EZ Presence" and "Student Application"
+                    )),
             Text(
               'Login Successful',
               textScaleFactor: 1.6,
@@ -217,14 +216,19 @@ class SecondRoute extends StatelessWidget {
               'Welcome!',
               textScaleFactor: 2.6,
             ),
-            SizedBox(height: 70), //This box makes a little space between the "Welcome!" and the "Scan Code"
-            SizedBox( //This box holds/is the button to "Scan Code"
+            SizedBox(
+                height:
+                    70), //This box makes a little space between the "Welcome!" and the "Scan Code"
+            SizedBox(
+              //This box holds/is the button to "Scan Code"
               height: 100,
               width: 250,
               child: TextButton(
                 style: ButtonStyle(
-                  foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                  backgroundColor: MaterialStateProperty.all<Color>(Colors.indigo),
+                  foregroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.indigo),
                 ),
                 onPressed: () {
                   Navigator.push(
@@ -297,13 +301,13 @@ class _QRRouteState extends State<QRRoute> {
     controller.scannedDataStream.listen((scanData) {
       _getPosition().then((location) {
         List<String> splitData = scanData.code.split('|');
-        String teacher_id = splitData[0];
-        String class_id = splitData[1];
-        String session_id = splitData[2];
+        String teacherId = splitData[0];
+        String classId = splitData[1];
+        String sessionId = splitData[2];
         double latitude = location.latitude;
         double longitude = location.longitude;
-        Attendance att = new Attendance(
-            session_id, teacher_id, class_id, latitude, longitude);
+        Attendance att =
+            new Attendance(sessionId, teacherId, classId, latitude, longitude);
         return FirebaseFunctions.instance
             .httpsCallable("validateLocation")(att.toJson());
       }).then((result) {
