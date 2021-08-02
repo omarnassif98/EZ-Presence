@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: AppColor.indigo,
         canvasColor: AppColor.white,
         primaryTextTheme: Theme.of(context).textTheme.apply(
-              bodyColor: AppColor.white, //I changed this from black to white so EZ-Presence in the title would be white
+              bodyColor: AppColor.white, //I changed this from black to white so EZ Presence in the title would be white
               displayColor: AppColor.black,
             ),
         textTheme: Theme.of(context).textTheme.apply(
@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
               displayColor: AppColor.black,
             ),
       ),
-      home: MyHomePage(title: 'EZPresence'),
+      home: MyHomePage(title: 'EZ Presence'),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -123,7 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Text('EZPresence',
+            Text('EZ Presence',
                 textAlign: TextAlign.center,
                 textScaleFactor: 4.0,
                 style: TextStyle(height: 2.5)),
@@ -131,7 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 textScaleFactor: 1.6,
                 style: TextStyle(
                     height:
-                        1.2 //This increases the amount of space between "EZPresence" and "Student Application"
+                        1.2 //This increases the amount of space between "EZ Presence" and "Student Application"
                     )),
             SizedBox(
                 height:
@@ -193,7 +193,7 @@ class SecondRoute extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Text(
-                'EZPresence',
+                'EZ Presence',
                 textAlign: TextAlign.center,
                 textScaleFactor: 4.0,
                 style: TextStyle(
@@ -204,7 +204,7 @@ class SecondRoute extends StatelessWidget {
                 'Student Application',
                 textScaleFactor: 1.6,
                 style: TextStyle(
-                    height: 1.2 //This increases the amount of space between "EZPresence" and "Student Application"
+                    height: 1.2 //This increases the amount of space between "EZ Presence" and "Student Application"
                 )
             ),
             Text(
@@ -271,12 +271,13 @@ class _QRRouteState extends State<QRRoute> {
             child: Center(
               child: (result != null)
                   ? Text('Data: ${result?.code}')
-                  : Text('Scan a code'),
+                  : Text('Scan a code', textScaleFactor: 3.1),
             ),
           ),
           TextButton(
             style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.indigo),
             ),
             onPressed: () {
               Navigator.push(
