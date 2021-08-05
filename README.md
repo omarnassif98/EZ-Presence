@@ -33,6 +33,7 @@ Students:
 ## Getting Started
 ### Installation and Setup
 List all the steps on how to install and setup your project
+
 Admins:
 1.
 2.
@@ -43,11 +44,13 @@ Teachers:
 2. Login with your admin-given credentials
 3. Begin a Session with your current course
 4. Display the QR Code to your students and go on about your teaching
-5. 
+
+
 Students:
 1. Download the EZ-Presence app on your phone.
 2. Login with your admin-given credentials.
 3. Scan the QR Code displayed by your teacher to mark your presence.
+
 
 ### Run
 List all the steps on how to run your project
