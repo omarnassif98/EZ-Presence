@@ -1,4 +1,4 @@
-# EZ-Presence
+# EZ Presence
 
 ## Introduction
 
@@ -32,28 +32,35 @@ Students:
 
 ## Getting Started
 ### Installation and Setup
-List all the steps on how to install and setup your project
 
 Admins:
-1.
-2.
-3.
+1. Step 1
+2. Step 2
+3. Step 3
 
 Teachers:
-1. Go to https://www.ezprez.app/
+1. Go to https://www.ezprez.app/ on a web browser
 2. Login with your admin-given credentials
-3. Begin a Session with your current course
-4. Display the QR Code to your students and go on about your teaching
-
 
 Students:
-1. Download the EZ-Presence app on your phone.
-2. Login with your admin-given credentials.
-3. Scan the QR Code displayed by your teacher to mark your presence.
-
+1. Download the EZ Presence mobile app on your phone
 
 ### Run
-List all the steps on how to run your project
+
+Admins:
+1. Step 1
+2. Step 2
+3. Step 3
+
+Teachers:
+1. Begin a Session with your current course after logging in
+2. Display the QR Code to your students to allow them to mark their presence
+3. You may also view analytics after login
+
+Students:
+1. Run the EZ Presence mobile app
+2. Login with your admin-given credentials
+3. Scan the QR Code displayed by your teacher to mark your presence
 
 ## Demo video
 
