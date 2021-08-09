@@ -9,13 +9,10 @@ function ValidateInput(val, button){
 }
 
 function GenerateSession(class_title, session_title){
-    navigator.geolocation.getCurrentPosition(function(pos){
-        console.log(pos);
         let req = new XMLHttpRequest();
         req.open('POST', baseURL + '/room-create');
         req.setRequestHeader('Content-Type', 'application/json');
-        req.send(JSON.stringify({'teacher_id':firebase.auth().currentUser.uid,'class_name' : class_title, 'lat':pos.coords.latitude, 'long':pos.coords.longitude, 'session_title':session_title}))
-    });
+        req.send(JSON.stringify({'teacher_id':firebase.auth().currentUser.uid,'class_name' : class_title, 'session_title':session_title}))
 }
 
 function ListenForSession(user, classID){
@@ -77,13 +74,27 @@ function ListenForAttendance(user, classID, sessionID){
         }
     });
 
-    document.getElementById('terminate_session_button').disabled = false;
-    document.getElementById('terminate_session_button').addEventListener('click', function() {
+    document.getElementById('terminate_button').disabled = false;
+    document.getElementById('terminate_button').addEventListener('click', function() {
         db.ref('classes/' + user.uid + '/' + classID + '/sessions/' + sessionID).off('child_changed', attendanceListener);
         document.getElementById('roster_divider').style.display = 'none';
         document.getElementById('qr_image').remove();
         document.getElementById('session_code').children[0].style.display = 'block';
         document.getElementById('session_view').style.display = 'none'
+    })
+
+    document.getElementById('sync_button').disabled = false;
+    document.getElementById('sync_button').addEventListener('click', function() {
+        navigator.geolocation.getCurrentPosition(function(pos){
+            console.log(pos);
+            if(document.getElementById('sync_button').getAttribute('sync') == 'remote'){
+                db.ref('classes/' + user.uid + '/' + classID + '/sessions/' + sessionID + '/location_data').set({'required':true, 'lat':pos.coords.latitude, 'long':pos.coords.longitude}).then(function(){document.getElementById('sync_button').setAttribute('sync', 'in_person'); document.getElementById('sync_button').innerHTML = 'Go Remote'})
+            }else{
+                db.ref('classes/' + user.uid + '/' + classID + '/sessions/' + sessionID + '/location_data').set({'required':false, 'lat':pos.coords.latitude, 'long':pos.coords.longitude}).then(function(){document.getElementById('sync_button').setAttribute('sync', 'remote'); document.getElementById('sync_button').innerHTML = 'Go Synchronous'})
+            }
+        }, function(){
+            alert('Please check permissions and try again')
+        });
     })
 }
 
@@ -141,6 +152,11 @@ function ShowClassDetails(user, class_title, class_details){
         attendance_holder.addEventListener('click', function(){
             let send = confirm(`Send a warning email to ${student.name}? They have ${student.abscences} ${(student.abscences==1)?' absence':' absences'}.`);
             console.log(send);
+            if (send){
+                let sendWarning = functions.httpsCallable('warnUser');
+                sendWarning({"student_id":studentUID, 'teacher_id':firebase.auth().currentUser.displayName, 'abscence_count':student.abscences}).then((result) => console.log(result))
+                
+            }
         })
     }
     

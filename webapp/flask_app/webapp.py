@@ -21,5 +21,5 @@ def DASH():
 def GenerateRoomData():
     body = request.get_json()
     print(body)
-    Thread(target=MakeQRCode, args=(body['teacher_id'], body['class_name'], body['session_title'], body['long'], body['lat'])).start()
+    Thread(target=MakeQRCode, args=(body['teacher_id'], body['class_name'], body['session_title'])).start()
     return '', 200

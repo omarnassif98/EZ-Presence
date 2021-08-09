@@ -40,7 +40,7 @@
     text-align: center;
 }
 
-#terminate_session_button{
+.session_button{
     display: block;
     float: right;
     padding: 5px;
@@ -50,11 +50,11 @@
     border-radius: 10px;
 }
 
-#terminate_session_button:active{
+#terminate_button:active{
     background-color: rgb(242, 102, 126)
 }
 
-#terminate_session_button:disabled{
+#terminate_button:disabled{
     background-color: rgb(197, 179, 182)
 }
 
