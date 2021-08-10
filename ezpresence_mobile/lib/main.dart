@@ -255,7 +255,14 @@ class _QRRouteState extends State<QRRoute> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   // TODO: make these null safe
   Barcode? result;
-  QRViewController? controller;
+  late QRViewController controller;
+
+  @override
+  void dispose() {
+    controller.pauseCamera();
+    controller.dispose();
+    super.dispose();
+  }
 
   //The QR page of the mobile app
   @override
@@ -298,7 +305,9 @@ class _QRRouteState extends State<QRRoute> {
 
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
+
     bool qrHasRead = false;
+
     controller.scannedDataStream.listen((scanData) {
       if (!qrHasRead) {
         qrHasRead = true;
@@ -315,13 +324,11 @@ class _QRRouteState extends State<QRRoute> {
               .httpsCallable("validateLocation")(att.toJson());
         }).then((result) {
           print(result.toString());
-          print('I am doing the thing.');
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => SecondRoute()),
+            MaterialPageRoute(builder: (context) => QRSuccessPage()),
           );
         }).catchError((error) {
-          print('Thar be an error.');
           print(error);
           return null;
         });
@@ -348,5 +355,59 @@ class _QRRouteState extends State<QRRoute> {
     }
 
     return await Geolocator.getCurrentPosition();
+  }
+}
+
+class QRSuccessPage extends StatefulWidget {
+  @override
+  State<QRSuccessPage> createState() => _QRSuccessPageState();
+}
+
+class _QRSuccessPageState extends State<QRSuccessPage>
+    with TickerProviderStateMixin {
+  late AnimationController controller;
+
+  @override
+  void initState() {
+    controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 3),
+    )..addListener(() {
+        setState(() {});
+      });
+    controller.forward().orCancel.then((_) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => SecondRoute()),
+      );
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            const Text(
+              "Attendance Successful",
+              style: TextStyle(fontSize: 24),
+            ),
+            CircularProgressIndicator(
+              value: controller.value,
+              semanticsLabel: "Progress bar",
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
