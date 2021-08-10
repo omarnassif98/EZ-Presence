@@ -298,21 +298,34 @@ class _QRRouteState extends State<QRRoute> {
 
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
+    bool qrHasRead = false;
     controller.scannedDataStream.listen((scanData) {
-      _getPosition().then((location) {
-        List<String> splitData = scanData.code.split('|');
-        String teacherId = splitData[0];
-        String classId = splitData[1];
-        String sessionId = splitData[2];
-        double latitude = location.latitude;
-        double longitude = location.longitude;
-        Attendance att =
-            new Attendance(sessionId, teacherId, classId, latitude, longitude);
-        return FirebaseFunctions.instance
-            .httpsCallable("validateLocation")(att.toJson());
-      }).then((result) {
-        print(result.toString());
-      });
+      if (!qrHasRead) {
+        qrHasRead = true;
+        _getPosition().then((location) {
+          List<String> splitData = scanData.code.split('|');
+          String teacherId = splitData[0];
+          String classId = splitData[1];
+          String sessionId = splitData[2];
+          double latitude = location.latitude;
+          double longitude = location.longitude;
+          Attendance att = new Attendance(
+              sessionId, teacherId, classId, latitude, longitude);
+          return FirebaseFunctions.instance
+              .httpsCallable("validateLocation")(att.toJson());
+        }).then((result) {
+          print(result.toString());
+          print('I am doing the thing.');
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => SecondRoute()),
+          );
+        }).catchError((error) {
+          print('Thar be an error.');
+          print(error);
+          return null;
+        });
+      }
     });
   }
 
