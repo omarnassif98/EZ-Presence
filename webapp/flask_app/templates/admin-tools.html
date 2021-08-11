@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block header %}
+<title>Admin tools</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='admin-tools.css') }}">
+<script src={{url_for('static', filename='admin-tools.js')}}></script>
+{% endblock %}
+{% block body %}
+<div class="content_area">
+    <h1>Admin Toolset</h1>
+    <div id="login_notice"><h3>Only administrators are allowed access to this page</h3></div>
+    <div id="admin_tools" style="display: none;">
+        <label for="tool_selection">Action: </label>
+        <select name="tool_selection" onchange="switchToolFocus(this.value)">
+            <option value="user_create">User Creation</option>
+            <option value="class_create">Class Creation</option>
+        </select>
+        <div class="admin_tool" id="user_create">
+            <label for="user_create_role">Role:</label>
+            <select name="user_create_role">
+                <option value="student">Student</option>
+                <option value="professor">Professor</option>
+                <option value="admin">Administrator</option>
+            </select>
+            <label for="user_create_fname">Full Name:</label>
+            <input type="text" name="user_create_fname">
+            <label for="user_create_email">Email:</label>
+            <input type="text" name="user_create_email">
+            <label for="user_create_pass">Password:</label>
+            <input type="password" name="user_create_pass">
+            <button onclick="CreateUserAccount()">Create User</button>
+        </div>
+
+        <div class="admin_tool" id="class_create" style="display: none;">
+            <label for="class_create_name">Class Name:</label>
+            <input type="text" name="class_create_name">
+            <label for="class_create_prof">Professor:</label>
+            <input type="text" name="class_create_professor" placeholder="Search...">
+            <div class="selection_carousel" id="professor_selection">
+                
+            </div>
+
+            <label for="class_create_prof">Student Roster:</label>
+            <input type="text" name="class_create_student" placeholder="Search...">
+            <div class="selection_carousel" id="student_selection">
+                
+            </div>
+            <button onclick="CreateClass()">Create Class</button>
+        </div>
+
+        
+    </div>
+</div>
+{% endblock %}

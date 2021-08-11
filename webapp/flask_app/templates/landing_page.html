@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block header %}
+<title>EZ Presence</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<script src={{url_for('static', filename='landing.js')}}></script>
+{% endblock %}
+{% block body %}
+  <main>
+    <div class="hero" id="login_prompt">
+      <div class="hero__content">
+        <div class="hero__text">
+          <div class="hero__maintext">
+            Welcome to EZ-Presence!
+          </div>
+          <div class="hero__offtext">
+            Lets get to attending.
+          </div>
+          <div class="hero__buttons">
+            <a class="button button_large button_important clickable" onclick="ChangeFocus(document.getElementById('login_dropdown').querySelector('.dropdown_content'))">Log In</a>
+          </div>
+        </div>
+        <div class="hero__photo clickable"><img alt="classroom" src="{{ url_for('static', filename='classroom_blue.jpg') }}"></div>
+      </div>
+    </div>
+
+    <div class="hero" id="professor_prompt" style="display: none;">
+      <div class="hero__content">
+        <div class="hero__text">
+          <div class="hero__maintext">
+            Welcome <span>TEACHER</span>, are you ready to begin class?
+          </div>
+          <div class="hero__offtext">
+            EZ Presence was made with professors like you in mind.
+            With this tool, we hope to aid you in the attendance process.
+          </div>
+          <div class="hero__buttons">
+            <a class="button button_large button_important clickable" href="/dashboard">Begin a session</a>
+          </div>
+        </div>
+        <div class="hero__photo clickable"><img alt="classroom" src="{{ url_for('static', filename='classroom_blue.jpg') }}"></div>
+      </div>
+    </div>
+
+    <div class="hero" id="admin_prompt" style="display: none;">
+      <div class="hero__content">
+        <div class="hero__text">
+          <div class="hero__maintext">
+            Welcome <span>ADMIN</span>
+          </div>
+          <div class="hero__offtext">
+            As an admin, you are able to create and manage classes as well as the teachers and students that comprise them.
+          </div>
+          <div class="hero__buttons">
+            <a class="button button_large button_important clickable" href="/admin">Open admin tools</a>
+          </div>
+        </div>
+        <div class="hero__photo clickable"><img alt="classroom" src="{{ url_for('static', filename='classroom_blue.jpg') }}"></div>
+      </div>
+    </div>
+  </main>
+{% endblock body %}

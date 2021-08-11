@@ -1,0 +1,120 @@
+
+#class_collection{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 75%;
+    margin: auto;
+}
+
+.class_wrapper{
+    width: 12em;
+    text-align: center;
+    background-color: whitesmoke;
+    border-radius: 3em;
+    border: solid;
+    transition: .25s all;
+}
+
+.class_wrapper:hover{
+    background-color: rebeccapurple;
+}
+
+.content_area{
+    background-color: rgba(255, 255, 255, 0.6);
+    width: 75%;
+    margin: auto;
+    margin-top: 2.5em;
+    height: 50%;
+    transition: height 1s ease;
+}
+
+.roster_slot{
+    background: white;
+    padding: 0.5em;
+    border: 1px solid black;
+    border-radius: 15px;
+}
+
+#session_code{
+    text-align: center;
+}
+
+.session_button{
+    display: block;
+    float: right;
+    padding: 5px;
+    background-color: pink;
+    border: 0;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+#terminate_button:active{
+    background-color: rgb(242, 102, 126)
+}
+
+#terminate_button:disabled{
+    background-color: rgb(197, 179, 182)
+}
+
+#roster_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 50px;
+    cursor: pointer;
+}
+
+.roster_slot > span, .previous_record > span{
+    pointer-events: none;
+}
+
+.analytics_group{
+    width: 300px;
+    height: 200px;
+    background-color: #8da1a27a;
+    padding: 10px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0;
+}
+
+#past_sessions_select{
+    width: 100%;
+}
+
+#analytics_container{
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 30px;
+    padding-top: 20px;
+}
+
+.record_container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-wrap: nowrap;
+    overflow-y: auto;
+    margin-top: 10px;
+    background-color: #7fffd429;
+}
+
+.previous_record{
+    background: white;
+    width: max-content;
+    padding: 5px;
+    border-radius: 15px;
+    margin: auto;
+}
+
+.previous_record:hover{
+    cursor: pointer;
+}
+
+.previous_record:active{
+    background: darkkhaki;
+}

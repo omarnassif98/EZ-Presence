@@ -1,0 +1,4 @@
+Flask
+qrcode
+firebase_admin
+Pillow
