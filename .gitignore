@@ -1,2 +1,11 @@
-.vscode
-flask_app/firebase_admin_object.json
+# miscellany
+.DS_Store
+.idea
+*.log
+tmp/
+
+# dart
+ezpresence_mobile/go/
+
+# python
+flask_app/__pycache__/
