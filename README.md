@@ -55,8 +55,6 @@ Students:
 ## Demo video
 https://youtu.be/5c8BWoTTz9U
 
-Please make it short (1-3 minutes) and interesting!
-
 ## Contributors
 
 * Omar Abou Nassif Mourad (abounassifmourado@wit.edu), Team Leader, Backend, Tester
