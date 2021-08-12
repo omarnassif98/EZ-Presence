@@ -33,11 +33,6 @@ Students:
 ## Getting Started
 ### Installation and Setup
 
-Admins:
-1. Step 1
-2. Step 2
-3. Step 3
-
 Teachers:
 1. Go to https://www.ezprez.app/ on a web browser
 2. Login with your admin-given credentials
@@ -46,11 +41,6 @@ Students:
 1. Download the EZ Presence mobile app on your phone
 
 ### Run
-
-Admins:
-1. Step 1
-2. Step 2
-3. Step 3
 
 Teachers:
 1. Begin a Session with your current course after logging in
