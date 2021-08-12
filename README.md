@@ -17,6 +17,7 @@ Admins:
 	* Create class listings
 	* Modify class rosters
 	* Delete class listings
+
 Teachers:
 3. Begin class session
 	* Begin attendance tracking
@@ -25,6 +26,7 @@ Teachers:
 	* Display most recent attendees
 	* Display attendance QR code
 	* View attendance rates of roster
+
 Students: 
 5. Self-service attendance data
 	* Submit attendance status
