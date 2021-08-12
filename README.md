@@ -53,10 +53,7 @@ Students:
 3. Scan the QR Code displayed by your teacher to mark your presence
 
 ## Demo video
-
-Upload your demo video to youtube and put a link here. Basically, the video content is very much like a quick live demo of your product with the followings:
-1. Introduction
-2. Quick walkthrough of all the features/functions one by one
+https://youtu.be/5c8BWoTTz9U
 
 Please make it short (1-3 minutes) and interesting!
 
