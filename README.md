@@ -19,16 +19,16 @@ Admins:
 	* Delete class listings
 
 Teachers:
-3. Begin class session
+1. Begin class session
 	* Begin attendance tracking
 	* Generate QR code
-4. Monitor attendance data via the dashboard
+2. Monitor attendance data via the dashboard
 	* Display most recent attendees
 	* Display attendance QR code
 	* View attendance rates of roster
 
 Students: 
-5. Self-service attendance data
+1. Self-service attendance data
 	* Submit attendance status
 
 
