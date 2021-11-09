@@ -59,7 +59,7 @@ https://youtu.be/5c8BWoTTz9U
 
 ## Contributors
 
-* Omar Abou Nassif Mourad (abounassifmourado@wit.edu), Team Leader, Backend, Tester
+* Omar Abou Nassif Mourad (abounassifmourado@wit.edu), Team Leader, Backend, Frontend, Tester
 * Michael Marino (marinom1@wit.edu), Frontend, Tester
 * Dillon Morse (morsed1@wit.edu), Frontend, Backend, Tester
 * James Musacchio (musacchioj@wit.edu), Backend, Tester
